@@ -1,0 +1,36 @@
+branches:
+  only:
+  - master
+  - preview
+sudo: false
+language: node_js
+cache:
+  directories:
+  - node_modules
+node_js:
+- stable
+- 6.9.1
+- 8.15.0
+- 10.15.3
+script: npm run build
+jobs:
+  include:
+  - stage: npm release
+    node_js: stable
+    deploy:
+    - provider: npm
+      email: wictor@wictorwilen.se
+      api_key:
+        secure: j6I9Ot4fjA2Cs+d58EIkZNFbRWRYlYBrl/xOi3BlG0xsnMBQj3q7tytXm1gb8P7z5qTKl8QSSNfdjawDjE6o3n1R7M/e0zFcD4h65PYfS3ShO7s5X6lPRcGHQ3KChHDi4vJPeuSE0sBebs6zepWgurlk/g5tkToHaudWz1CNtjTQz86h7swEj+zkH4ms0dyylnotYOGhppcKLxu2r9UretmfvUGMfo9ceLaJOo0KP10yWgys59fM/Ljkw91xxXQHwQQrVyhTCsJAKduoURpyOWgqEneeu40G3Th0jurf5n2qQPFLulYLvwPAmOyDZv51VKEld0wxMq9FWcpKdDu8x4NwzGk1L1T13WEejR/pS9U0Gaiio2WNH9N3Ytt0xH5Own7nPDuLu2IY+cjYAMtVmSILVZ//5xRZkb7RWylfKA0OI4RdyBXLNbzGqbWfjFbgHsKXOi83/rjbQx0TyMZtXHpGMyuRlgFM0IsebB4nR6jK86SUfiaOBPTbuCwUC4YxcJa9i7aj5lxAUianMMiam/Fskh2vEizJs4d5eKN3UPEnuSAjoCgmiXhsAfXVEMq1TOeGrD+q65KyzK2Ck+eEpilboy2SOzcMZEYq0kHFzjce5xt+73QHKNyB2MeXtQqFsubjTzZa/yq0WbWx0hI838Z9C13iEW8aBrHBw5vnFEA=
+      skip_cleanup: true
+      tag: preview
+      on:
+        branch: preview
+    - provider: npm
+      email: wictor@wictorwilen.se
+      api_key:
+        secure: j6I9Ot4fjA2Cs+d58EIkZNFbRWRYlYBrl/xOi3BlG0xsnMBQj3q7tytXm1gb8P7z5qTKl8QSSNfdjawDjE6o3n1R7M/e0zFcD4h65PYfS3ShO7s5X6lPRcGHQ3KChHDi4vJPeuSE0sBebs6zepWgurlk/g5tkToHaudWz1CNtjTQz86h7swEj+zkH4ms0dyylnotYOGhppcKLxu2r9UretmfvUGMfo9ceLaJOo0KP10yWgys59fM/Ljkw91xxXQHwQQrVyhTCsJAKduoURpyOWgqEneeu40G3Th0jurf5n2qQPFLulYLvwPAmOyDZv51VKEld0wxMq9FWcpKdDu8x4NwzGk1L1T13WEejR/pS9U0Gaiio2WNH9N3Ytt0xH5Own7nPDuLu2IY+cjYAMtVmSILVZ//5xRZkb7RWylfKA0OI4RdyBXLNbzGqbWfjFbgHsKXOi83/rjbQx0TyMZtXHpGMyuRlgFM0IsebB4nR6jK86SUfiaOBPTbuCwUC4YxcJa9i7aj5lxAUianMMiam/Fskh2vEizJs4d5eKN3UPEnuSAjoCgmiXhsAfXVEMq1TOeGrD+q65KyzK2Ck+eEpilboy2SOzcMZEYq0kHFzjce5xt+73QHKNyB2MeXtQqFsubjTzZa/yq0WbWx0hI838Z9C13iEW8aBrHBw5vnFEA=
+      skip_cleanup: true
+      on:
+        branch: master
+
